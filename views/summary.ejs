@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>Meal</td>
+            <td>Item Name</td>
+            <td>Quantity</td>
+            <td>Amount</td>
+        </tr>
+        <% orders.map(item=>{ %>
+            <tr>
+                <td><%= item.foodtype %></td>
+                <td><%= item["item_name"] %></td>
+                <td><%= item.quantities %></td>
+                <td><%= item.amount %></td>
+            </tr>
+        <%}) %>
+    </table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="/styles/showMenu.css">
+</head>
+<body>
+    <form action="/menu/all" method="post">
+        <input type="date" name="menuDate" value=<%= date %>/>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+    <% if(locals.menus) {%>
+        <table>
+            <tr>
+                <th>Item Name</th>
+                <th>Meal</th>
+                <th>Category</th>
+                <th>Maximum Quantity</th>
+                <th>Amount</th>
+            </tr>
+        <% menus.forEach(menu => { %>
+            <tr>
+                <td><%= menu["item_name"] %></td>
+                <td><%= menu.serving %></td>
+                <td><%= menu.isveg %></td>
+                <td><%= menu.maxserving %></td>
+                <td><%= menu.amount %></td>
+            </tr>            
+    <%  }); %>
+     </table>
+    <% } %>
+    <button><a href="/menu/add">Add Menu</a></button>
+</body>
+</html>

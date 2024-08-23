@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+<body>
+    <form action="/menu/select" method="post">
+        <input type="date" name="date">
+        <select id="veg" name="meal">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+            <option value="Dinner">Dinner</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div>
+        <% if (locals.menus) { %>
+            <% menus.forEach(item => { %>
+                <div class="card">
+                    <h3><%= item.item_name%></h3>
+                    <p><b><%= item.amount %></b></p>
+                    <button onclick="updateQuantity('<%= item.item_name %>','<%= item.maxserving %>',-1)">-</button>
+                    <p id="quantity-<%= item.item_name %>">0</p>
+                    <button onclick="updateQuantity('<%= item.item_name %>', '<%= item.maxserving %>',1)">+</button>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+    <% if(locals.menus){ %>
+        <button onclick="sendUpdatedQuantities()">Done!</button>
+    <% } %>
+    <script>
+        var data={}
+        function updateQuantity(itemName, maxserving,change) {
+            const quantityElement = document.getElementById(`quantity-${itemName}`);
+            let quantity = parseInt(quantityElement.innerText, 10) + change;
+            maxserving= parseInt(maxserving);
+            if (quantity < 0) {
+                quantity = 0;
+            }
+            if(quantity> maxserving){
+                quantity= maxserving;
+            }
+            quantityElement.innerText = quantity;
+
+            data[itemName]=quantity;
+        }
+        function sendUpdatedQuantities() {
+            fetch('/menu/update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>

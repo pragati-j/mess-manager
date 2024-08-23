@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member</title>
+</head>
+
+<body>
+    <form action="/user/login" method="post">
+        <input id="input1" type="email" placeholder="Email" name="email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" name="submit" value="Log in">
+    </form>
+    <button id="change">Log in using number</button>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // console.log("Let's Start");
+            document.getElementById("change").addEventListener("click", (event) => {
+                // console.log("Yup");
+                var text = event.target.textContent;
+                if (text === "Log in using number") {
+                    var obj = document.getElementById("input1");
+                    obj.name = "phone";
+                    obj.type = "tel";
+                    obj.placeholder = "Mobile";
+                    event.target.textContent = "Log in with Email";
+                } else {
+                    var obj = document.getElementById("input1");
+                    obj.name = "email";
+                    obj.type = "email";
+                    obj.placeholder = "Email";
+                    event.target.textContent = "Log in using number";
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

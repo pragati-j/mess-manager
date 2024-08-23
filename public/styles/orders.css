@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: green;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    color: green;
+    margin: 20px 0 10px 0;
+    text-align: center;
+}
+
+hr {
+    border: 1px solid green;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.card p.membername {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card .item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form, button {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+form input[type="date"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+form label {
+    margin-right: 10px;
+}
+
+button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #004d00;
+}
+
+@media (min-width: 768px) {
+    .card-container {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .card {
+        width: 100%;
+    }
+}

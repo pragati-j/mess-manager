@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Menu</title>
+    <link rel="stylesheet" href="/styles/addMenu.css">
+</head>
+
+<body>
+    <section class="form-group">
+        <form action="/menu/add" method="post">
+            <div class="form-input">
+                <input type="radio" id="breakfast" name="serving" value="Breakfast">
+                <label for="breakfast">Breakfast</label>
+                <input type="radio" id="lunch" name="serving" value="Lunch">
+                <label for="lunch">Lunch</label>
+                <input type="radio" id="snacks" name="serving" value="Snacks">
+                <label for="snacks">Snacks</label>
+                <input type="radio" id="dinner" name="serving" value="Dinner">
+                <label for="dinner">Dinner</label>
+            </div>
+            <div class="form-input">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+                <label for="end-time">Time</label>
+                <input id="end-time" type="time" name="timing" value="12:00" />
+            </div>
+            <%# if(locals.menus) {%>
+                <table id="inputTable">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Maximum Quantity</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <%# } %>
+                    <input type="submit" value="Add" name="submit">
+        </form>
+        <button id="addRowBtn">Add Rows</button>
+    </section>
+
+    <script>
+        // var count =0;
+        document.addEventListener('DOMContentLoaded', () => {
+            const addRowBtn = document.getElementById('addRowBtn');
+            const inputTable = document.getElementById('inputTable').getElementsByTagName('tbody')[0];
+
+            // count+=1;
+            addRowBtn.addEventListener('click', () => {
+                const newRow = document.createElement('tr');
+
+                const cell1 = document.createElement('td');
+                const input1 = document.createElement('input');
+                input1.type = 'text';
+                input1.name = 'Name';
+                cell1.appendChild(input1);
+                newRow.appendChild(cell1);
+
+                const cell2 = document.createElement('td');
+                const select = document.createElement('select');
+                select.name = 'category';
+
+                const option1 = document.createElement('option');
+                option1.value = 'Veg';
+                option1.textContent = 'Veg';
+                select.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = 'Non-Veg';
+                option2.textContent = 'Non-Veg';
+                select.appendChild(option2);
+
+                const option3 = document.createElement('option');
+                option3.value = 'Veg/Non-Veg';
+                option3.textContent = 'Veg/Non-Veg';
+                select.appendChild(option3);
+
+                cell2.appendChild(select);
+                newRow.appendChild(cell2);
+
+                const cell3 = document.createElement('td');
+                const input3 = document.createElement('input');
+                input3.type = 'text';
+                input3.name = 'maxServing';
+                cell2.appendChild(input3);
+                newRow.appendChild(cell3);
+
+                const cell4 = document.createElement('td');
+                const input4 = document.createElement('input');
+                input4.type = 'text';
+                input4.name = 'amount';
+                cell2.appendChild(input4);
+                newRow.appendChild(cell4);
+
+                inputTable.appendChild(newRow);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

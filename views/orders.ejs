@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/orders.css">
+</head>
+<body>
+    <%if(locals.orders){ %>
+        <h3>Breakfast</h3><hr>
+        <div class="card-container">
+            <% for(var i=0;i<orders.length;i++){ %>
+                <% if(orders[i].foodtype=="Breakfast"){ %>
+                    <div class="card">
+                        <p class="membername"><%= orders[i].membername %></p>
+                        <div class="item-details">
+                            <span><%= orders[i].item_name %> X <%= orders[i].quantity %></span>
+                            <span><%= orders[i].charges %></span>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+        
+        <h3>Lunch</h3><hr>
+        <div class="card-container">
+            <% for(var i=0;i<orders.length;i++){ %>
+                <% if(orders[i].foodtype=="Lunch"){ %>
+                    <div class="card">
+                        <p class="membername"><%= orders[i].membername %></p>
+                        <div class="item-details">
+                            <span><%= orders[i].item_name %> X <%= orders[i].quantity %></span>
+                            <span><%= orders[i].charges %></span>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+
+        
+        <h3>Snacks</h3><hr>
+        <div class="card-container">
+            <% for(var i=0;i<orders.length;i++){ %>
+                <% if(orders[i].foodtype=="Snacks"){ %>
+                    <div class="card">
+                        <p class="membername"><%= orders[i].membername %></p>
+                        <div class="item-details">
+                            <span><%= orders[i].item_name %> X <%= orders[i].quantity %></span>
+                            <span><%= orders[i].charges %></span>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+
+        
+        <h3>Dinner</h3><hr>
+        <div class="card-container">
+            <% for(var i=0;i<orders.length;i++){ %>
+                <% if(orders[i].foodtype=="Dinner"){ %>
+                    <div class="card">
+                        <p class="membername"><%= orders[i].membername %></p>
+                        <div class="item-details">
+                            <span><%= orders[i].item_name %> X <%= orders[i].quantity %></span>
+                            <span><%= orders[i].charges %></span>
+                        </div>
+                    </div>
+                <% } %>
+            <% } %>
+        </div>
+    <%}%>
+
+    <form action="/orders/summary" method="post">
+        <input type="date" name="date">
+        <label for="date">Set date:</label>
+        <button type="submit">GO</button>
+    </form>
+    <button><a href="/orders/items/<%= date %>">Get Summary</a></button>
+</body>
+</html>
